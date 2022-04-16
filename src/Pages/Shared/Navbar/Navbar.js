@@ -1,13 +1,14 @@
 import "./Navbar.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import teachersLogo from '../../../Photos/teachers-logo.png'
 
 const Navbar = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <Link to='/' >Navbar</Link>
+          <Link className="ms-5" to='/' ><img style={{height: '50px'}} src={teachersLogo} alt="" /></Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -69,9 +70,9 @@ const Navbar = () => {
                 </a>
               </li>
             </ul>
-            <Link className="mx-5" to='/home' >Home</Link>
-            <Link to='/login' >Login</Link>
-            <Link className="mx-5" to='/register' >Register</Link>
+            <Link className="mx-5 my-2 home-button d-block" to='/home' >Home</Link>
+            <Link className="d-block login-button" to='/login' >Login</Link>
+            <Link className="mx-5 my-2 register-button d-block" to='/register' >Register</Link>
           </div>
         </div>
       </nav>
