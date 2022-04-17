@@ -9,6 +9,7 @@ import NotFound from './Pages/Shared/NotFound/NotFound';
 import Checkout from './Pages/Checkout/Checkout';
 import Blogs from './Pages/Blogs/Blogs';
 import About from './Pages/About/About';
+import Footer from './Pages/Shared/Footer/Footer';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/about' element={<About/>} ></Route>
         <Route path='*' element={<NotFound/>} ></Route>
       </Routes>
+      <Footer/>
     </div>
   );
 }
