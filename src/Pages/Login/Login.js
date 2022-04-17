@@ -1,8 +1,38 @@
 import './Login.css'
-import React from 'react';
+import React, { useState } from 'react';
 import login from '../../Photos/login.svg'
+import { Link } from 'react-router-dom';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Login = () => {
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+
+    const handleEmail = event => {
+        setEmail(event.target.value);
+    }
+
+    const handlePassword = event => {
+        setPassword(event.target.value);
+    }
+
+    const handleLogin = event => {
+        event.preventDefault()
+        signInWithEmailAndPassword(email, password)
+        console.log(user);
+    }
+    if(user) {
+        console.log(user);
+    }
+
     return (
         <div className='container mt-5 my-5'>
             <div className='row'>
@@ -11,17 +41,18 @@ const Login = () => {
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12 register-form '>
                     <h2>Login</h2>
-                    <form>
+                    <form onSubmit={handleLogin} >
 
                         <div className="mb-3">
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Email' required />
+                            <input onBlur={handleEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Email' required />
                         </div>
 
                         <div className="mb-3">
-                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter Password' required/>
+                            <input onBlur={handlePassword} type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter Password' required/>
                         </div>
 
                         <button type="submit" className="btn btn-primary">Login</button>
+                        <p className='mt-2'>Already Have An Account?<Link className='text-decoration-none' to='/register' > Sign Up Here</Link></p>
                     </form>
                 </div>
 

@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 
 const Register = () => {
@@ -33,7 +34,7 @@ const Register = () => {
 
     
 
-    const handleSubmit = event => {
+    const handleRegister = event => {
         event.preventDefault()
         if( password !== confirmPassword ) {
             toast("Confirm Password Didn't Match!")
@@ -43,13 +44,17 @@ const Register = () => {
         }
         
     }
+    if(user) {
+        console.log(user);
+    }
+
 
     return (
         <div className='container mt-5 my-5'>
             <div className='row'>
                 <div className='col-lg-6 col-md-6 col-sm-12 register-form mb-5 '>
                     <h2>Sign Up</h2>
-                    <form onSubmit={handleSubmit} >
+                    <form onSubmit={handleRegister} >
                         <div className="mb-3">
                             <input type="text" className="form-control" id="exampleName" aria-describedby="nameHelp" placeholder='Enter Name(Optional)' />
                         </div>
@@ -67,6 +72,7 @@ const Register = () => {
                         </div>
                         <button type="submit" className="btn btn-primary">Sign Up</button>
                         <ToastContainer/>
+                        <p className='mt-2'>Already Have An Account?<Link className='text-decoration-none' to='/login' > Login Here</Link></p>
                     </form>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
