@@ -1,8 +1,20 @@
 import './Register.css'
-import React from 'react';
+import React, { useState } from 'react';
 import registerImg from '../../Photos/register.svg'
 
 const Register = () => {
+
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+
+    const handleEmail = event => {
+        console.log(event.target.value);
+    }
+
+    const handlePassword = event => {
+        console.log(event.target.value);
+    }
+
     return (
         <div className='container mt-5 my-5'>
             <div className='row'>
@@ -14,11 +26,11 @@ const Register = () => {
                         </div>
 
                         <div className="mb-3">
-                            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Email' required />
+                            <input onChange={handleEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Email' required />
                         </div>
 
                         <div className="mb-3">
-                            <input type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter Password' required/>
+                            <input onChange={handlePassword} type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter Password' required/>
                         </div>
 
                         <div className="mb-3">
