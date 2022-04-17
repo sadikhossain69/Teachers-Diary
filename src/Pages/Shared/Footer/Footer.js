@@ -31,6 +31,7 @@ const Footer = () => {
                         <Link className='btn text-white d-block mx-auto' to='/register' >Sign Up</Link>
                     </div>
                 </div>
+                <p>Copyright ©2022 All Right Reserved by Teachers Diary</p>
             </div>
         </div>
     );
