@@ -1,0 +1,22 @@
+.register-form {
+    /* border: 1px solid red; */
+    /* margin-top: 20px; */
+    text-align: center;
+    margin: auto;
+    padding: 30px 5px;
+    border-radius: 10px;
+    background: skyblue;
+    box-shadow:  50px 50px 100px #bebebe,
+             -50px -50px 100px #ffffff;
+}
+
+.register-form input {
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    font-size: large;
+}
+
+.terms-and-conditon {
+    width: 20px;
+}
