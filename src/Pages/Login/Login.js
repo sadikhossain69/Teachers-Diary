@@ -1,13 +1,14 @@
 import './Login.css'
 import React, { useState } from 'react';
 import login from '../../Photos/login.svg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
+    const navigate = useNavigate()
 
     const [
         signInWithEmailAndPassword,
@@ -28,6 +29,7 @@ const Login = () => {
         event.preventDefault()
         signInWithEmailAndPassword(email, password)
         console.log(user);
+        navigate('/')
     }
     if(user) {
         console.log(user);
@@ -52,7 +54,7 @@ const Login = () => {
                         </div>
 
                         <button type="submit" className="btn btn-primary">Login</button>
-                        <p className='mt-2'>Already Have An Account?<Link className='text-decoration-none' to='/register' > Sign Up Here</Link></p>
+                        <p className='mt-2'>New To Teachers Diary?<Link className='text-decoration-none' to='/register' > Sign Up Here</Link></p>
                     </form>
                 </div>
 

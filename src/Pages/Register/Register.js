@@ -5,7 +5,7 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
@@ -19,6 +19,7 @@ const Register = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ confirmPassword, setConfirmPassword ] = useState('')
+    const navigate = useNavigate()
 
     const handleEmail = event => {
         setEmail(event.target.value);
@@ -42,6 +43,7 @@ const Register = () => {
         else {
             createUserWithEmailAndPassword(email, password)
         }
+        navigate('/')
         
     }
     if(user) {

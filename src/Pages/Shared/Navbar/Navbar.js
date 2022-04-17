@@ -2,8 +2,15 @@ import "./Navbar.css";
 import React from "react";
 import { Link } from "react-router-dom";
 import teachersLogo from '../../../Photos/teachers-logo.png'
+import auth from "../../../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
+
+  const [user, loading, error] = useAuthState(auth);
+
+
   return (
     <div className="navbar-component">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -70,9 +77,13 @@ const Navbar = () => {
                 </a>
               </li>
             </ul>
-            <Link className="mx-5 my-2 home-button d-block" to='/home' >Home</Link>
-            <Link className="d-block login-button" to='/login' >Login</Link>
-            <Link className="mx-5 my-2 register-button d-block" to='/register' >Register</Link>
+            <Link className="mx-3 my-2 home-button" to='/home' >Home</Link>
+            {
+              user ? <button onClick={ () => signOut(auth) } className="mx-5 my-2 register-button">Sign Out</button>
+                    :
+                    // <Link className="d-block login-button" to='/login' >Login</Link>
+                    <Link className="mx-5 my-2 register-button d-block" to='/register' >Register</Link>
+            }
           </div>
         </div>
       </nav>
