@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import registerImg from '../../Photos/register.svg'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Register = () => {
@@ -15,6 +17,7 @@ const Register = () => {
 
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
+    const [ confirmPassword, setConfirmPassword ] = useState('')
 
     const handleEmail = event => {
         setEmail(event.target.value);
@@ -24,9 +27,21 @@ const Register = () => {
         setPassword(event.target.value);
     }
 
+    const handleConfirmPassword = event => {
+        setConfirmPassword(event.target.value)
+    }
+
+    
+
     const handleSubmit = event => {
         event.preventDefault()
-        createUserWithEmailAndPassword(email, password)
+        if( password !== confirmPassword ) {
+            toast("Confirm Password Didn't Match!")
+        }
+        else {
+            createUserWithEmailAndPassword(email, password)
+        }
+        
     }
 
     return (
@@ -44,13 +59,14 @@ const Register = () => {
                         </div>
 
                         <div className="mb-3">
-                            <input onChange={handlePassword} type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter Password' required/>
+                            <input onBlur={handlePassword} type="password" className="form-control" id="exampleInputPassword1" placeholder='Enter Password' required/>
                         </div>
 
                         <div className="mb-3">
-                            <input type="password" className="form-control" id="exampleInputConfirmPassword1" placeholder='Confirm Password' required />
+                            <input onBlur={handleConfirmPassword} type="password" className="form-control" id="exampleInputConfirmPassword1" placeholder='Confirm Password' required />
                         </div>
                         <button type="submit" className="btn btn-primary">Sign Up</button>
+                        <ToastContainer/>
                     </form>
                 </div>
                 <div className='col-lg-6 col-md-6 col-sm-12'>
