@@ -77,7 +77,9 @@ const Navbar = () => {
                 </a>
               </li>
             </ul>
-            <Link className="mx-3 my-2 home-button" to='/home' >Home</Link>
+            <Link className="mx-3 my-2 home-button d-block" to='/home' >Home</Link>
+            <Link className="mx-3 my-2 home-button d-block" to='/about' >About Me</Link>
+            <Link className="mx-3 my-2 home-button d-block" to='/blogs' >Blogs</Link>
             {
               user ? <button onClick={ () => signOut(auth) } className="mx-5 my-2 register-button">Sign Out</button>
                     :
