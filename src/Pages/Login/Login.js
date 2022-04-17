@@ -4,6 +4,7 @@ import login from '../../Photos/login.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
     const [ email, setEmail ] = useState('')
@@ -29,8 +30,14 @@ const Login = () => {
         event.preventDefault()
         signInWithEmailAndPassword(email, password)
         console.log(user);
-        navigate('/')
+
+        if(user) {
+            navigate('/')
+        }
     }
+    
+    
+
     if(user) {
         console.log(user);
     }

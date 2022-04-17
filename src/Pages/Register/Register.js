@@ -42,8 +42,11 @@ const Register = () => {
         }
         else {
             createUserWithEmailAndPassword(email, password)
+            navigate('/')
         }
-        navigate('/')
+        if(error) {
+            toast(error.message)
+        }
         
     }
     if(user) {
