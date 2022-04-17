@@ -1,9 +1,17 @@
 import './Register.css'
 import React, { useState } from 'react';
 import registerImg from '../../Photos/register.svg'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+
 
 const Register = () => {
-    
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth);
 
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
@@ -18,6 +26,7 @@ const Register = () => {
 
     const handleSubmit = event => {
         event.preventDefault()
+        createUserWithEmailAndPassword(email, password)
     }
 
     return (
