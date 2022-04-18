@@ -1,7 +1,7 @@
 import './Login.css'
 import React, { useState } from 'react';
 import login from '../../Photos/login.svg'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast, ToastContainer } from 'react-toastify';
@@ -10,6 +10,8 @@ const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const navigate = useNavigate()
+    const location = useLocation()
+    let from = location.state?.from?.pathname || '/';
 
     const [
         signInWithEmailAndPassword,
@@ -31,13 +33,10 @@ const Login = () => {
         signInWithEmailAndPassword(email, password)
         console.log(user);
 
-        if(user) {
-            navigate('/home')
-        }
     }
     
     if(user) {
-        navigate('/home')
+        navigate(from, { replace: true });
     }
 
     if(user) {
