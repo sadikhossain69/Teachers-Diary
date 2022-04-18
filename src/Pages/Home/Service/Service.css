@@ -5,6 +5,6 @@
 
 .service-card:hover, .service-card:active, .service-card:focus {
     -webkit-box-shadow: 4px -2px 19px 17px rgba(0,0,0,0.41); 
-    box-shadow: 4px -2px 19px 17px rgba(0,0,0,0.41);
+    box-shadow: 4px -2px 19px 17px rgba(0,0,0,0.15);
     transition: 0.5s;
 }
