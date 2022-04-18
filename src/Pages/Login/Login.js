@@ -32,11 +32,13 @@ const Login = () => {
         console.log(user);
 
         if(user) {
-            navigate('/')
+            navigate('/home')
         }
     }
     
-    
+    if(user) {
+        navigate('/home')
+    }
 
     if(user) {
         console.log(user);
@@ -62,9 +64,12 @@ const Login = () => {
 
                         <button type="submit" className="btn btn-primary">Login</button>
                         <p className='mt-2'>New To Teachers Diary?<Link className='text-decoration-none' to='/register' > Sign Up Here</Link></p>
+                        {
+                            error && <div>{toast(error.message)}</div>
+                        }
                     </form>
                 </div>
-
+        <ToastContainer/>
             </div>
         </div>
     );
