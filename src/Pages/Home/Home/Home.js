@@ -3,6 +3,7 @@ import React from 'react';
 import banner from '../../../Photos/banner.png'
 import Typed from 'react-typed';
 import Services from '../Services/Services';
+import Reviews from '../Reviews/Reviews';
 
 const Home = () => {
     return (
@@ -29,6 +30,7 @@ const Home = () => {
                 </div>
             </div>
             <Services/>
+            <Reviews/>
         </>
     );
 };
