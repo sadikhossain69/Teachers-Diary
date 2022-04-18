@@ -6,6 +6,7 @@ import auth from '../../firebase.init';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
+import Loading from '../Shared/Loading/Loading';
 
 
 const Register = () => {
@@ -14,7 +15,7 @@ const Register = () => {
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
 
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
@@ -42,15 +43,18 @@ const Register = () => {
         }
         else {
             createUserWithEmailAndPassword(email, password)
-            navigate('/')
-        }
-        if(error) {
-            toast(error.message)
         }
         
     }
     if(user) {
+        navigate('/')
         console.log(user);
+    }
+    if(error) {
+         toast(error.message)
+    }
+    if(loading) {
+        return <Loading/>
     }
 
 
@@ -65,7 +69,7 @@ const Register = () => {
                         </div>
 
                         <div className="mb-3">
-                            <input onChange={handleEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Email' required />
+                            <input onBlur={handleEmail} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Enter Email' required />
                         </div>
 
                         <div className="mb-3">
