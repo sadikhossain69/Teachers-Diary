@@ -28,11 +28,21 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
+    const handleResetPassword = () => {
+        if(email) {
+            return toast('Check Your Email Inbox To Reset')
+        }
+    }
+
     const handleLogin = event => {
         event.preventDefault()
         signInWithEmailAndPassword(email, password)
         console.log(user);
 
+    }
+
+    if(error) {
+        toast(error.message)
     }
     
     if(user) {
@@ -63,9 +73,7 @@ const Login = () => {
 
                         <button type="submit" className="btn btn-primary">Login</button>
                         <p className='mt-2'>New To Teachers Diary?<Link className='text-decoration-none' to='/register' > Sign Up Here</Link></p>
-                        {
-                            error && <div>{toast(error.message)}</div>
-                        }
+                        <p className='mt-2'>Forget Password?<button onClick={handleResetPassword} className='btn text-primary text-decoration-none' >Reset Password</button></p>
                     </form>
                 </div>
         <ToastContainer/>
