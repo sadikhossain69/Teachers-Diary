@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast, ToastContainer } from 'react-toastify';
+import Loading from '../Shared/Loading/Loading';
 
 const Login = () => {
     const [ email, setEmail ] = useState('')
@@ -45,6 +46,10 @@ const Login = () => {
         toast(error.message)
     }
     
+    if(loading) {
+        return <Loading/>
+    }
+
     if(user) {
         navigate(from, { replace: true });
     }
